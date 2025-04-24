@@ -1,10 +1,10 @@
 Hipóteses para o Não Pagamento;x;x_type;condition (filter);y;y_type
-"H1: Renda - ""O consumidor não conseguiu pagar porque as parcelas comprometiam mais de 30% da sua renda, somadas a outras dívidas.""";loan_percent_income;numerical;;loan_status;categorical_ordinal
-"H10: Histórico de crédito - ""O cliente já estava superendividado antes de contrair o novo empréstimo, levando à inadimplência.""";previous_loan_defaults_on_file;categorical_ordinal;;loan_status;categorical_ordinal
-"H20: Taxa de Juros - ""Os juros altos, tem menor probabilidade de pagar? .""";loan_int_rate;numerical;;loan_status;categorical_ordinal
+"H1: Renda - ""O consumidor não conseguiu pagar porque as parcelas comprometiam mais de 30% da sua renda, somadas a outras dívidas. O que o levou a não pagar o reempréstimo?""";loan_percent_income;numerical;;loan_status;categorical_ordinal
+"H10: Histórico de crédito - ""O cliente possuidor de um empréstimo antes de contrair o novo empréstimo tem maior chance de nao pagar o reempréstimo.""";previous_loan_defaults_on_file;categorical_ordinal;;loan_status;categorical_ordinal
+"H20: Taxa de Juros - ""O cliente possuidor de emprèstimos cujo os são mais elevados tem menor probabilidade de pagar? .""";loan_int_rate;numerical;;loan_status;categorical_ordinal
 "H30: Pessoal - ""Devido a uma emergência (como desemprego ou problema de saúde) que afetou a renda do cliente, levando à inadimplência.""";loan_intent;categorical_nominal;MEDICAL;loan_status;categorical_ordinal
-"H31: Pessoal - ""Pessoas com maior grau de escolaridade tem maior probabilidade de pagar o reespréstimo?""";person_education;categorical_nominal;;loan_status;categorical_ordinal
-"H32: Pessoal - ""Pegou o empréstimo sem intenção de pagar (calote intencional).""";N/A;N/A;N/A;loan_status;categorical_ordinal
+"H31: Pessoal - ""Pessoas com maior grau de escolaridade tem maior probabilidade de pagar o reempréstimo?""";person_education;categorical_nominal;;loan_status;categorical_ordinal
+"H32: Pessoal - ""Pegou o empréstimo sem intenção de pagar (calote intencional).""";credit_score;numerical;-;loan_status;categorical_ordinal
 "H32: Pessoal - ""Pessoas de possuem imóvel ou tem investimentos, tem maior probabilidade de pagar?""";person_home_ownership;categorical_nominal;OWN;loan_status;categorical_ordinal
 "H33: Pessoal - ""Pessoas com menor faixa etária tem maior probabilidade de pagar?""";person_age;numerical;-;loan_status;categorical_ordinal
 "H34: Pessoal - ""Pessoas com maior renda mensal tem maior probabilidade de pagar?""";person_income;numerical;-;loan_status;categorical_ordinal
@@ -18,4 +18,4 @@ H70: Amortização - O modo de amortização usando a tabela Price possuem menor ris
 H71: Amortização - O modo de amortização usando a tabela SAC possuem menor risco de inadimplência?;N/A;N/A;N/A;loan_status;categorical_ordinal
 H72: Amortização - O modo de amortização usando a tabela SACRE possuem menor inadimplência?;N/A;N/A;N/A;loan_status;categorical_ordinal
 H80: Tarifas e encargos - Maiores tarifas e encargos, levam a maior risco de inadimplência?;N/A;N/A;N/A;loan_status;categorical_ordinal
-H90: Valor do empréstimo - Uma quantia elevada de capital tende a ter menores taxas de inadimplência?;loan_amnt;numerical;-;loan_status;categorical_ordinal
+H90: Valor do empréstimo - Se o cliente tomador de empréstimo pegar uma quantia elevada, este cliente tende a ter maiores taxas de inadimplência?;loan_amnt;numerical;-;loan_status;categorical_ordinal
