@@ -14,7 +14,7 @@ normality test results. The plot also includes a custom legend with mean,
 mode, and KDE curve markers.
 """
 
-def plot_violin_percent(loan_status, loan_percent_income, df):
+def plot_violin_percent(loan_status, field, df):
     """
     Plot a violin plot with annotations for loan interest rate distribution by loan status, with normality test results and custom legend.
 
@@ -27,7 +27,7 @@ def plot_violin_percent(loan_status, loan_percent_income, df):
     plt.figure(figsize=(12, 7))
     ax = sns.violinplot(
         x="loan_status",
-        y="loan_int_rate",
+        y=field,
         data=df,
         palette={0: "lightcoral", 1: "lightblue"},
         inner="quartile",
@@ -37,7 +37,7 @@ def plot_violin_percent(loan_status, loan_percent_income, df):
 
     # Add distribution curves
     for status in df["loan_status"].unique():
-        subset = df[df["loan_status"] == status]["loan_int_rate"].dropna()
+        subset = df[df["loan_status"] == status][field].dropna()
         kde = stats.gaussian_kde(subset)
         x_vals = np.linspace(subset.min(), subset.max(), 100)
         y_vals = kde(x_vals)
@@ -53,7 +53,7 @@ def plot_violin_percent(loan_status, loan_percent_income, df):
     }
 
     for i, status in enumerate(df["loan_status"].unique()):
-        subset = df[df["loan_status"] == status]["loan_int_rate"].dropna()
+        subset = df[df["loan_status"] == status][field].dropna()
         
         # Calculate statistics
         q1, median, q3 = np.percentile(subset, [25, 50, 75])
@@ -78,7 +78,7 @@ def plot_violin_percent(loan_status, loan_percent_income, df):
 
     # Add normality test results
     for i, status in enumerate(df["loan_status"].unique()):
-        subset = df[df["loan_status"] == status]["loan_int_rate"].dropna()
+        subset = df[df["loan_status"] == status][field].dropna()
         _, p_value = stats.normaltest(subset)
         ax.text(i, ax.get_ylim()[1]*0.95, f'Normality p: {p_value:.4f}', 
                 ha='center', va='top', fontsize=9,
@@ -86,7 +86,7 @@ def plot_violin_percent(loan_status, loan_percent_income, df):
 
     plt.title("(0 = Default | 1 = Paid)", pad=20)
     plt.xlabel("Repagamento de Empréstimo", fontsize=12)
-    plt.ylabel(loan_percent_income, fontsize=12)
+    plt.ylabel(field, fontsize=12)
     plt.xticks([0, 1], ["Não pagantes", "Pagantes"])
     plt.grid(axis='y', linestyle='--', alpha=0.3)
 
