@@ -1,21 +1,21 @@
-Hipóteses para o Não Pagamento;x;x_type;condition (filter);y;y_type
-"H1: Renda - ""O consumidor não conseguiu pagar porque as parcelas comprometiam mais de 30% da sua renda, somadas a outras dívidas. O que o levou a não pagar o reempréstimo?""";loan_percent_income;numerical;;loan_status;categorical_ordinal
-"H10: Histórico de crédito - ""O cliente possuidor de um empréstimo antes de contrair o novo empréstimo tem maior chance de nao pagar o reempréstimo.""";previous_loan_defaults_on_file;categorical_ordinal;;loan_status;categorical_ordinal
-"H20: Taxa de Juros - ""O cliente possuidor de emprèstimos cujo os são mais elevados tem menor probabilidade de pagar? .""";loan_int_rate;numerical;;loan_status;categorical_ordinal
-"H30: Pessoal - ""Devido a uma emergência (como desemprego ou problema de saúde) que afetou a renda do cliente, levando à inadimplência.""";loan_intent;categorical_nominal;MEDICAL;loan_status;categorical_ordinal
-"H31: Pessoal - ""Pessoas com maior grau de escolaridade tem maior probabilidade de pagar o reempréstimo?""";person_education;categorical_nominal;;loan_status;categorical_ordinal
-"H32: Pessoal - ""Pegou o empréstimo sem intenção de pagar (calote intencional).""";credit_score;numerical;-;loan_status;categorical_ordinal
-"H32: Pessoal - ""Pessoas de possuem imóvel ou tem investimentos, tem maior probabilidade de pagar?""";person_home_ownership;categorical_nominal;OWN;loan_status;categorical_ordinal
-"H33: Pessoal - ""Pessoas com menor faixa etária tem maior probabilidade de pagar?""";person_age;numerical;-;loan_status;categorical_ordinal
-"H34: Pessoal - ""Pessoas com maior renda mensal tem maior probabilidade de pagar?""";person_income;numerical;-;loan_status;categorical_ordinal
-H40: Condições Econômicas do País - O consumidor teve uma queda na renda (desemprego, redução salarial) e não pagou o empréstimo.;N/A;N/A;N/A;loan_status;categorical_ordinal
-H41: Condições Econômicas - Aumento de despesas fixas (saúde, educação, moradia) que comprometeu o orçamento e não pagou o empréstimo.;N/A;N/A;N/A;loan_status;categorical_ordinal
-H42: Condições Econômicas do País - Juros altos ou condições abusivas, tornando as parcelas impagáveis?;N/A;N/A;N/A;loan_status;categorical_ordinal
-H43: Condições Econômicas do País - Instabilidades com relação à política monetária, pode elevar o risco de inadimplência?;N/A;N/A;N/A;loan_status;categorical_ordinal
-H50: Garantias - Empréstimo sem garantia, contém maior risco de inadimplência? (mesmo da H32);previous_loan_defaults_on_file;categorical_ordinal;-;loan_status;categorical_ordinal
-H60: Prazo Empréstimo - Empréstimo com prazos maiores, contém menor risco de inadimplência?;N/A;N/A;N/A;loan_status;categorical_ordinal
-H70: Amortização - O modo de amortização usando a tabela Price possuem menor risco de inadimplência?;N/A;N/A;N/A;loan_status;categorical_ordinal
-H71: Amortização - O modo de amortização usando a tabela SAC possuem menor risco de inadimplência?;N/A;N/A;N/A;loan_status;categorical_ordinal
-H72: Amortização - O modo de amortização usando a tabela SACRE possuem menor inadimplência?;N/A;N/A;N/A;loan_status;categorical_ordinal
-H80: Tarifas e encargos - Maiores tarifas e encargos, levam a maior risco de inadimplência?;N/A;N/A;N/A;loan_status;categorical_ordinal
-H90: Valor do empréstimo - Se o cliente tomador de empréstimo pegar uma quantia elevada, este cliente tende a ter maiores taxas de inadimplência?;loan_amnt;numerical;-;loan_status;categorical_ordinal
+Hipóteses para o Não Pagamento;x
+"H1: Renda - ""O consumidor não conseguiu pagar porque as parcelas comprometiam mais de 30% da sua renda, somadas a outras dívidas. O que o levou a não pagar o reempréstimo?""";loan_percent_income
+"H10: Histórico de crédito - ""O cliente possuidor de um empréstimo antes de contrair o novo empréstimo tem maior chance de nao pagar o reempréstimo.""";previous_loan_defaults_on_file
+"H20: Taxa de Juros - ""O cliente possuidor de emprèstimos cujo os são mais elevados tem menor probabilidade de pagar? .""";loan_int_rate
+"H30: Pessoal - ""Devido a uma emergência (como desemprego ou problema de saúde) que afetou a renda do cliente, levando à inadimplência.""";loan_intent
+"H31: Pessoal - ""Pessoas com maior grau de escolaridade tem maior probabilidade de pagar o reempréstimo?""";person_education
+"H32: Pessoal - ""Pegou o empréstimo sem intenção de pagar (calote intencional).""";credit_score
+"H32: Pessoal - ""Pessoas de possuem imóvel ou tem investimentos, tem maior probabilidade de pagar?""";person_home_ownership
+"H33: Pessoal - ""Pessoas com menor faixa etária tem maior probabilidade de pagar?""";person_age
+"H34: Pessoal - ""Pessoas com maior renda mensal tem maior probabilidade de pagar?""";person_income
+H40: Condições Econômicas do País - O consumidor teve uma queda na renda (desemprego, redução salarial) e não pagou o empréstimo.;N/A
+H41: Condições Econômicas - Aumento de despesas fixas (saúde, educação, moradia) que comprometeu o orçamento e não pagou o empréstimo.;N/A
+H42: Condições Econômicas do País - Juros altos ou condições abusivas, tornando as parcelas impagáveis?;N/A
+H43: Condições Econômicas do País - Instabilidades com relação à política monetária, pode elevar o risco de inadimplência?;N/A
+H50: Garantias - Empréstimo sem garantia, contém maior risco de inadimplência? (mesmo da H32);previous_loan_defaults_on_file
+H60: Prazo Empréstimo - Empréstimo com prazos maiores, contém menor risco de inadimplência?;N/A
+H70: Amortização - O modo de amortização usando a tabela Price possuem menor risco de inadimplência?;N/A
+H71: Amortização - O modo de amortização usando a tabela SAC possuem menor risco de inadimplência?;N/A
+H72: Amortização - O modo de amortização usando a tabela SACRE possuem menor inadimplência?;N/A
+H80: Tarifas e encargos - Maiores tarifas e encargos, levam a maior risco de inadimplência?;N/A
+H90: Valor do empréstimo - Se o cliente tomador de empréstimo pegar uma quantia elevada, este cliente tende a ter maiores taxas de inadimplência?;loan_amnt
