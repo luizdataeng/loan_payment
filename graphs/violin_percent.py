@@ -1,47 +1,22 @@
-import seaborn as sns
-import matplotlib.pyplot as plt
+import pandas as pd
 import numpy as np
 from scipy import stats
-import statsmodels.api as sm
+import matplotlib.pyplot as plt
 
-"""
-Plot a violin plot with annotations for loan interest rate distribution
-by loan status, with normality test results and custom legend.
-
-This code generates a violin plot with annotations for the loan interest
-rate distribution by loan status, including the mean, median, mode, and
-normality test results. The plot also includes a custom legend with mean,
-mode, and KDE curve markers.
-"""
-
-def plot_violin_percent(loan_status, field, df):
-    """
-    Plot a violin plot with annotations for loan interest rate distribution by loan status, with normality test results and custom legend.
-
-    Parameters:
-        loan_status (int): The loan status to filter by (0 = Default, 1 = Paid).
-        loan_percent_income (float): The percentage of income allocated for loan repayment.
-        df (pandas.DataFrame): The loan data with 'loan_status' and 'loan_int_rate' columns.
-    """
-
-    plt.figure(figsize=(12, 7))
-    ax = sns.violinplot(
-        x="loan_status",
-        y=field,
-        data=df,
-        palette={0: "lightcoral", 1: "lightblue"},
-        inner="quartile",
-        cut=0,
-        bw_method=0.2  # Adjust bandwidth for smoother distribution
-    )
-
+def plot_violin_percent(target, field, df):
+    fig, ax = plt.subplots(figsize=(10, 6))
+    
+    # Create violin plot
+    plt.violinplot([df[df[target] == status][field].dropna() for status in df[target].unique()],
+                   showmeans=True, showmedians=True)
+    
     # Add distribution curves
-    for status in df["loan_status"].unique():
-        subset = df[df["loan_status"] == status][field].dropna()
+    for i, status in enumerate(df[target].unique(), start=1):
+        subset = df[df[target] == status][field].dropna()
         kde = stats.gaussian_kde(subset)
         x_vals = np.linspace(subset.min(), subset.max(), 100)
         y_vals = kde(x_vals)
-        ax.plot(status + y_vals/y_vals.max()*0.4, x_vals, color='black', lw=1)
+        ax.plot(i + y_vals/y_vals.max()*0.4, x_vals, color='black', lw=1)
 
     # Annotation parameters
     annotation_config = {
@@ -52,8 +27,8 @@ def plot_violin_percent(loan_status, field, df):
         'Mode': {'color': 'red', 'va': 'top', 'ha': 'right'}
     }
 
-    for i, status in enumerate(df["loan_status"].unique()):
-        subset = df[df["loan_status"] == status][field].dropna()
+    for i, status in enumerate(df[target].unique(), start=1):
+        subset = df[df[target] == status][field].dropna()
         
         # Calculate statistics
         q1, median, q3 = np.percentile(subset, [25, 50, 75])
@@ -77,8 +52,8 @@ def plot_violin_percent(loan_status, field, df):
                 va='center', ha='right', fontsize=9)
 
     # Add normality test results
-    for i, status in enumerate(df["loan_status"].unique()):
-        subset = df[df["loan_status"] == status][field].dropna()
+    for i, status in enumerate(df[target].unique(), start=1):
+        subset = df[df[target] == status][field].dropna()
         _, p_value = stats.normaltest(subset)
         ax.text(i, ax.get_ylim()[1]*0.95, f'Normality p: {p_value:.4f}', 
                 ha='center', va='top', fontsize=9,
@@ -87,7 +62,7 @@ def plot_violin_percent(loan_status, field, df):
     plt.title("(0 = Default | 1 = Paid)", pad=20)
     plt.xlabel("Repagamento de Empréstimo", fontsize=12)
     plt.ylabel(field, fontsize=12)
-    plt.xticks([0, 1], ["Não pagantes", "Pagantes"])
+    plt.xticks([1, 2], ["Não pagantes", "Pagantes"])
     plt.grid(axis='y', linestyle='--', alpha=0.3)
 
     # Create custom legend
@@ -101,3 +76,27 @@ def plot_violin_percent(loan_status, field, df):
 
     plt.tight_layout()
     plt.show()
+
+# # Load and prepare data
+# csv_path = 'loan_data.csv'
+# df = pd.read_csv(csv_path)
+
+# df = df.astype({
+#     "person_age": np.dtype("int"),
+#     "person_gender": np.dtype("object"),
+#     "person_education": np.dtype("object"),
+#     "person_income": np.dtype("float"),
+#     "person_emp_exp": np.dtype("int"),
+#     "person_home_ownership": np.dtype("object"),
+#     "loan_amnt": np.dtype("float"),
+#     "loan_intent": np.dtype("object"),
+#     "loan_int_rate": np.dtype("float"),
+#     "loan_percent_income": np.dtype("float"),
+#     "cb_person_cred_hist_length": np.dtype("float"),
+#     "credit_score": np.dtype("int"),
+#     "previous_loan_defaults_on_file": np.dtype("object"),
+#     "loan_status": np.dtype("int")
+# })
+
+# # Create the violin plot
+# plot_violin_percent('loan_status', 'loan_percent_income', df)
